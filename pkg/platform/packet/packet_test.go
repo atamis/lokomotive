@@ -15,6 +15,7 @@
 package packet
 
 import (
+	"os"
 	"sort"
 	"testing"
 )
@@ -354,4 +355,34 @@ func cmpSliceString(a, b []string) bool {
 	}
 
 	return true
+}
+
+func TestAuthTokenIfSet(t *testing.T) {
+	envAuthToken := os.Getenv("PACKET_AUTH_TOKEN")
+	c := config{
+		AuthToken: "Lokomotive",
+	}
+
+	if c.AuthToken == "" {
+		c.AuthToken = os.Getenv("PACKET_AUTH_TOKEN")
+	}
+
+	if c.AuthToken == envAuthToken {
+		t.Errorf("auth_token should not match env auth_token, expected %v, got %v:", c.AuthToken, envAuthToken)
+	}
+}
+
+func TestAuthTokenIfEmpty(t *testing.T) {
+	envAuthToken := os.Getenv("PACKET_AUTH_TOKEN")
+	c := config{
+		AuthToken: "",
+	}
+
+	if c.AuthToken == "" {
+		c.AuthToken = os.Getenv("PACKET_AUTH_TOKEN")
+	}
+
+	if c.AuthToken != envAuthToken {
+		t.Errorf("auth_token should match env auth_token, expected %v, got %v:", c.AuthToken, envAuthToken)
+	}
 }
