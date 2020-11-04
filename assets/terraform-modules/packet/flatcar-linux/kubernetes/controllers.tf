@@ -71,6 +71,7 @@ data "ct_config" "controller-ignitions" {
     dns_zone              = var.dns_zone
     cluster_name          = var.cluster_name
     enable_tls_bootstrap  = var.enable_tls_bootstrap
+    cloud_provider        = "external"
   })
   snippets = var.controller_clc_snippets
 }

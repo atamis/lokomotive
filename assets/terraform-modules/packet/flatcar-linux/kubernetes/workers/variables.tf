@@ -195,3 +195,9 @@ variable "enable_tls_bootstrap" {
   description = "Enable TLS Bootstrap for Kubelet."
   type        = bool
 }
+
+variable "cloud_provider" {
+  description = "The provider for cloud services (empty string for no provider)"
+  type        = string
+  default     = ""
+}

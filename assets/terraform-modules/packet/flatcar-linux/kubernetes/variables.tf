@@ -217,3 +217,9 @@ variable "ignore_x509_cn_check" {
   type        = bool
   default     = false
 }
+
+variable "cloud_provider" {
+  description = "The provider for cloud services (empty string for no provider)"
+  type        = string
+  default     = ""
+}
